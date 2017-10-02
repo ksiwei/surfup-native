@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
+import * as Animatable from 'react-native-animatable'
 
 const testImage = 'https://ichef.bbci.co.uk/news/660/media/images/82232000/jpg/_82232395_dog.jpg';
 
@@ -10,8 +11,12 @@ class ListScreen extends React.Component {
     };
     render() {
       const { navigate } = this.props.navigation;
+      const AnimatedList = Animatable.createAnimatableComponent(FlatList)
       return (
-        <FlatList
+        <AnimatedList
+          animation="bounceInUp"
+          duration={800}
+          delay={100}
           style={styles.container}
           data={this.props.spots.locations}
           renderItem={({item}) => {
